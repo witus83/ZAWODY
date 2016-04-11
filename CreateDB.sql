@@ -1,15 +1,15 @@
-CREATE TABLE SHOOTERS (
+CREATE TABLE SHOOTER (
   
   ID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  FirstName varchar(50),
-  LastName varchar(150),
+  FirstName varchar(50) not null,
+  LastName varchar(150) not null,
   City varchar(100),
   Club varchar(100),
   IsLicence boolean,
   DateBirth Date,
   Email varchar(50),
   RegDate Timestamp
-  
+
 )
 
 
@@ -20,14 +20,19 @@ CREATE TABLE COMPETITION_TYPE (
   
 )
 
-CREATE TABLE COMPETITIONS (
+CREATE TABLE COMPETITION (
 
   ID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   COMPETITION_NAME varchar(300),
   MONTH INT(2),
   YEAR INT(4)
-  
 )
 
+CREATE TABLE RESULTS (
 
+  ID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  
+  FOREIGN KEY (COMPETITION) REFERENCES COMPETITION(ID),
+  FOREIGN KEY (SHOOTER_ID) REFERENCES SHOOTER(ID)
+)
 
