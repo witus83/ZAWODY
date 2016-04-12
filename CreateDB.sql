@@ -8,16 +8,15 @@ CREATE TABLE SHOOTER (
   IsLicence boolean,
   DateBirth Date,
   Email varchar(50),
+  Phone varchar(150),
   RegDate Timestamp
-
 )
 
 CREATE TABLE USER (
-
   ID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   Login varchar(20),
-  Password varchar(200)
-  
+  Password varchar(200),
+  Status int(1)
   )
 
 CREATE TABLE COMPETITION_TYPE (
@@ -45,3 +44,5 @@ CREATE TABLE RESULTS (
 
 INSERT INTO `user` (`login`, `password`) VALUES
     ('admin', '21232f297a57a5a743894a0e4a801fc3');
+
+
