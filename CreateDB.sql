@@ -3,12 +3,13 @@ CREATE TABLE SHOOTER (
   ID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   FirstName varchar(50) not null,
   LastName varchar(150) not null,
-  City varchar(100),
+  City varchar(100) not null,
   Club varchar(100),
   IsLicence boolean,
   DateBirth Date,
-  Email varchar(50),
-  Phone varchar(150),
+  Email varchar(150),
+  Phone varchar(20),
+  Notes varchar(1024),
   RegDate Timestamp
 )
 
