@@ -1,3 +1,58 @@
+CREATE TABLE `shooter` (
+  `ID` int(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
+  `FirstName` varchar(50) COLLATE utf8_polish_ci NOT NULL,
+  `LastName` varchar(150) COLLATE utf8_polish_ci NOT NULL,
+  `City` varchar(200) COLLATE utf8_polish_ci DEFAULT NULL,
+  `Club` varchar(200) COLLATE utf8_polish_ci DEFAULT NULL,
+  `IsLicence` tinyint(1) DEFAULT NULL,
+  `BirthDate` date DEFAULT NULL,
+  `Email` varchar(150) COLLATE utf8_polish_ci DEFAULT NULL,
+  `Phone` varchar(20) COLLATE utf8_polish_ci DEFAULT NULL,
+  `notes` varchar(1024) COLLATE utf8_polish_ci DEFAULT NULL,
+`RegDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+
+
+
+CREATE PROCEDURE `insert_shooter` 
+( 
+IN `p_FirstName` VARCHAR( 50 ) CHARSET utf8, 
+IN `p_LastName` VARCHAR( 150 ) CHARSET utf8, 
+IN `p_City` VARCHAR( 200 ) CHARSET utf8, 
+IN `p_Club` VARCHAR( 200 ) CHARSET utf8, 
+IN `p_IsLicence` BOOLEAN, 
+IN `p_BirthDate` DATE, 
+IN `p_Email` VARCHAR( 150 ) CHARSET utf8, 
+IN `p_Phone` VARCHAR( 20 ) CHARSET utf8, 
+IN `p_Notes` VARCHAR( 1024 ) CHARSET utf8 ) NOT DETERMINISTIC 
+CONTAINS SQL SQL SECURITY DEFINER 
+INSERT INTO shooter
+(
+FirstName, 
+LastName, 
+City, 
+Club, 
+IsLicence, 
+BirthDate, 
+Email, 
+Phone, 
+Notes )
+VALUES (
+p_FirstName, 
+p_LastName, 
+p_City, 
+p_Club, 
+p_IsLicence, 
+p_BirthDate, 
+p_Email, 
+p_Phone, 
+p_Notes
+)
+
+
+
+-------------------------------------------------------------------------------------
 CREATE TABLE SHOOTER (
   
   ID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
