@@ -1,4 +1,4 @@
-CREATE TABLE `shooter` (
+CREATE TABLE `SHOOTER` (
   `ID` int(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
   `FirstName` varchar(50) COLLATE utf8_polish_ci NOT NULL,
   `LastName` varchar(150) COLLATE utf8_polish_ci NOT NULL,
@@ -8,8 +8,8 @@ CREATE TABLE `shooter` (
   `BirthDate` date DEFAULT NULL,
   `Email` varchar(150) COLLATE utf8_polish_ci DEFAULT NULL,
   `Phone` varchar(20) COLLATE utf8_polish_ci DEFAULT NULL,
-  `notes` varchar(1024) COLLATE utf8_polish_ci DEFAULT NULL,
-`RegDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `Notes` varchar(1024) COLLATE utf8_polish_ci DEFAULT NULL,
+  `RegDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 
@@ -27,7 +27,7 @@ IN `p_Email` VARCHAR( 150 ) CHARSET utf8,
 IN `p_Phone` VARCHAR( 20 ) CHARSET utf8, 
 IN `p_Notes` VARCHAR( 1024 ) CHARSET utf8 ) NOT DETERMINISTIC 
 CONTAINS SQL SQL SECURITY DEFINER 
-INSERT INTO shooter
+INSERT INTO SHOOTER
 (
 FirstName, 
 LastName, 
@@ -52,22 +52,6 @@ p_Notes
 
 
 
--------------------------------------------------------------------------------------
-CREATE TABLE SHOOTER (
-  
-  ID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  FirstName varchar(50) not null,
-  LastName varchar(150) not null,
-  City varchar(200) not null,
-  Club varchar(1200),
-  IsLicence boolean,
-  BirthDate Date,
-  Email varchar(150),
-  Phone varchar(20),
-  Notes varchar(1024),
-  RegDate Timestamp
-)
-
 CREATE TABLE USER (
   ID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   Login varchar(20),
@@ -78,19 +62,28 @@ CREATE TABLE USER (
   Status int(2)
   )
 
-CREATE TABLE COMPETITION_TYPE (
+-------------------------------------------------------------------------------------
+
+
+CREATE TABLE TYPE (
 
   ID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  DESCR varchar(300),
+  Name varchar(300),
   Status int(2)
-  
 )
 
 CREATE TABLE COMPETITION (
-
   ID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   COMPETITION_NAME varchar(300),
   Date date
+)
+
+CREATE TABLE COMPETITION_TYPE(
+
+   ID INT(8) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+   FOREIGN KEY (TYPE_ID) REFERENCES TYPE(ID),
+   FOREIGN KEY (COMPETITION_ID) REFERENCES COMPETITION(ID),
+
 )
 
 CREATE TABLE RESULTS (
@@ -106,9 +99,8 @@ CREATE TABLE RESULTS (
   P_8 int(2),
   P_9 int(2),
   P_10 int(2),
-  Series int(1),
+  Series int(2),
   FOREIGN KEY (COMPETITION_TYPE_ID) REFERENCES COMPETITION_TYPE(ID),
-  FOREIGN KEY (COMPETITION_ID) REFERENCES COMPETITION(ID),
   FOREIGN KEY (SHOOTER_ID) REFERENCES SHOOTER(ID)
 )
 
