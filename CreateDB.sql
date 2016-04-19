@@ -5,7 +5,7 @@ CREATE TABLE `SHOOTER` (
   `City` varchar(200) COLLATE utf8_polish_ci DEFAULT NULL,
   `Club` varchar(200) COLLATE utf8_polish_ci DEFAULT NULL,
   `IsLicence` tinyint(1) DEFAULT NULL,
-  `BirthDate` date DEFAULT NULL,
+  `LicenceNr` varchar(50) DEFAULT NULL,
   `Email` varchar(150) COLLATE utf8_polish_ci DEFAULT NULL,
   `Phone` varchar(20) COLLATE utf8_polish_ci DEFAULT NULL,
   `Notes` varchar(1024) COLLATE utf8_polish_ci DEFAULT NULL,
@@ -22,7 +22,7 @@ IN `p_LastName` VARCHAR( 150 ) CHARSET utf8,
 IN `p_City` VARCHAR( 200 ) CHARSET utf8, 
 IN `p_Club` VARCHAR( 200 ) CHARSET utf8, 
 IN `p_IsLicence` BOOLEAN, 
-IN `p_BirthDate` DATE, 
+IN `p_licenceNr` VARCHAR(50), 
 IN `p_Email` VARCHAR( 150 ) CHARSET utf8, 
 IN `p_Phone` VARCHAR( 20 ) CHARSET utf8, 
 IN `p_Notes` VARCHAR( 1024 ) CHARSET utf8 ) NOT DETERMINISTIC 
@@ -34,7 +34,7 @@ LastName,
 City, 
 Club, 
 IsLicence, 
-BirthDate, 
+LicenceNr, 
 Email, 
 Phone, 
 Notes )
@@ -44,7 +44,7 @@ p_LastName,
 p_City, 
 p_Club, 
 p_IsLicence, 
-p_BirthDate, 
+p_LicenceNr, 
 p_Email, 
 p_Phone, 
 p_Notes
@@ -99,12 +99,11 @@ CREATE TABLE RESULTS (
   P_8 int(2),
   P_9 int(2),
   P_10 int(2),
+  Sum int(5),
   Series int(2),
   FOREIGN KEY (COMPETITION_TYPE_ID) REFERENCES COMPETITION_TYPE(ID),
   FOREIGN KEY (SHOOTER_ID) REFERENCES SHOOTER(ID)
 )
 
-INSERT INTO `user` (`login`, `password`) VALUES
-    ('admin', '21232f297a57a5a743894a0e4a801fc3');
 
 
