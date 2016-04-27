@@ -1,5 +1,5 @@
 CREATE TABLE `SHOOTER` (
-  `ID` int(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
+  ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `FirstName` varchar(50) COLLATE utf8_polish_ci NOT NULL,
   `LastName` varchar(150) COLLATE utf8_polish_ci NOT NULL,
   `City` varchar(200) COLLATE utf8_polish_ci DEFAULT NULL,
@@ -53,54 +53,65 @@ p_Notes
 
 
 CREATE TABLE USER (
-  ID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  Login varchar(20),
+  ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  Login varchar(20) NOT NULL,
   Password varchar(300),
   FirstName varchar(50),
   LastName varchar(150),
-  Email (varchar(150),
-  Status int(2)
+  Email varchar(150),
+  Status int
   )
 
 -------------------------------------------------------------------------------------
 
-
 CREATE TABLE TYPE (
 
-  ID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   Name varchar(300),
   Status int(2)
-)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+ 
+
 
 CREATE TABLE COMPETITION (
-  ID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   COMPETITION_NAME varchar(300),
   Date date
-)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
 
 CREATE TABLE COMPETITION_TYPE(
 
-   ID INT(8) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+   ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	TYPE_ID INT NOT NULL,
+COMPETITION_ID INT NOT NULL,
    FOREIGN KEY (TYPE_ID) REFERENCES TYPE(ID),
-   FOREIGN KEY (COMPETITION_ID) REFERENCES COMPETITION(ID),
+   FOREIGN KEY (COMPETITION_ID) REFERENCES COMPETITION(ID)
 
-)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
-CREATE TABLE RESULTS (
-  ID INT(8) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  P_0 int(2),
-  P_1 int(2),
-  P_2 int(2),
-  P_3 int(2),
-  P_4 int(2),
-  P_5 int(2),
-  P_6 int(2),
-  P_7 int(2),
-  P_8 int(2),
-  P_9 int(2),
-  P_10 int(2),
+
+
+
+CREATE TABLE RESULT (
+ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  P_0 int,
+  P_1 int,
+  P_2 int,
+  P_3 int,
+  P_4 int,
+  P_5 int,
+  P_6 int,
+  P_7 int,
+  P_8 int,
+  P_9 int,
+  P_10 int,
+  P_10_Z INT,
+  P_10_W INT,
   Sum int(5),
   Series int(2),
+  COMPETITION_TYPE_ID INT,
+  SHOOTER_ID INT,
   FOREIGN KEY (COMPETITION_TYPE_ID) REFERENCES COMPETITION_TYPE(ID),
   FOREIGN KEY (SHOOTER_ID) REFERENCES SHOOTER(ID)
 )
