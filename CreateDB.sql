@@ -118,3 +118,4 @@ ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 
 
 
+INSERT INTO USER (Login, Password) values ('admin', '$2y$10$Ji5kwxOaqNvE1yf81IeYl.wI687Pu6hQJJMHBwh38dQuii4Y1Yz3.');
